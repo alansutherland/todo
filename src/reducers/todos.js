@@ -1,0 +1,51 @@
+import undoable from 'redux-undo'
+
+const todo = (state, action) => {
+  switch (action.type) {
+    case 'ADD_TODO':
+      return {
+        id: action.id,
+        text: action.text,
+        completed: false
+      }
+    case 'TOGGLE_TODO':
+      if (state.id !== action.id) {
+        return state
+      }
+
+      return {
+        ...state,
+        completed: !state.completed
+      }
+    default:
+      return state
+  }
+}
+
+let todoList = [
+  { id: 0, text: 'Go Running', completed: false},
+  { id: 1, text: 'Clean the car', completed: false},
+  { id: 2, text: 'Grocery shopping', completed: false},
+  { id: 3, text: 'Laundry', completed: false},
+  { id: 4, text: 'Book Flights', completed: false},
+]
+
+const todos = (state = todoList, action) => {
+  switch (action.type) {
+    case 'ADD_TODO':
+      return [
+        ...state,
+        todo(undefined, action)
+      ]
+    case 'TOGGLE_TODO':
+      return state.map(t =>
+        todo(t, action)
+      )
+    default:
+      return state
+  }
+}
+
+const undoableTodos = undoable(todos)
+
+export default undoableTodos
