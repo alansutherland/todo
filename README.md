@@ -3,11 +3,9 @@
 `npm install` then
 `npm start` to run locally
 
-Architecture Design 
-5. Design a ToDo list web application. 
-How your system works?
-What consideration you need?
-What limitations your system has? 
+## Architecture Design
+
+### Design a ToDo list web application. 
 
 I have built a To Do app using React and Redux. I have styled it to look like a notepad with a checklist. The app allows users to add new tasks by clicking on the input with the placeholder “What do you want to do today?” and either hitting enter or clicking the “+” icon. New tasks are added to the list in real-time. By Clicking on a task you can toggle its completed state on and off.
 
